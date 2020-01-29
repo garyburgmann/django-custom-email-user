@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="django_custom_email_user",
-    version="0.0.1",
+    version="0.1",
     author="Gary Burgmann",
     author_email="garyburgmann@gmail.com",
     description="Modify Django default User to use email as unique identifier",

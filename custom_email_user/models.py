@@ -75,4 +75,4 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
 
     class Meta:
-        db_table = 'users'
+        abstract = True

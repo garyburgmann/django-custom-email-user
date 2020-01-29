@@ -6,13 +6,36 @@ Used to replace default Django User model with email, instead of the username, a
 
 The Django admin panel is customised to accommodate these changes, along with the User forms custom_email_user.forms.CustomUserCreationForm and custom_email_user.forms.CustomUserChangeForm
 
-Simply add custom_email_user to your installed apps, configure the AUTH_USER_MODEL, and run the migrations
+Simply:
+* add custom_email_user to your installed apps
+* subclass the abstracted class 
+* configure the AUTH_USER_MODEL
+* run the migrations
+* register your user model with the admin site
 
-```
+```python
 INSTALLED_APPS = [
     ...
     'custom_email_user'
 ]
 
-AUTH_USER_MODEL = 'custom_email_user.User'
+AUTH_USER_MODEL = 'my_model_module.User'
+```
+
+```python
+from django.db import models
+from custom_email_user.models import User as BaseUser
+
+
+class User(BaseUser):
+    pass
+```
+
+```python
+from django.contrib import admin
+from custom_email_user.admin import CustomUserAdmin
+
+from .models import User
+
+admin.site.register(User, CustomUserAdmin)
 ```
